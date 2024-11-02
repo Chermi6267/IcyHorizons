@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CatalogItems from "./catalogItems";
 import FiltersMenu from "./filterMenu/filtersMenu";
 import SearchAndFiltersMenu from "./searchAndFiltersMenu";
 import SearchMenu from "./searchMenu/searchMenu";
 import styles from "./styles.module.scss";
 import { IAdminCenter, ICategory, ILandmark } from "@/interfaces/landmark";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { useDebounce } from "@/hook/useDebounce";
-import api from "@/http/api";
-import { setLandmarks } from "@/store/landmarkSlice";
-import { sortByRating } from "@/utils/sortByRating";
-import { sortByCommentsLength } from "@/utils/sortByCommentsLength";
+import useWindowWidth from "@/hook/useWindowWidth";
 
 interface Props {
   initialLandmarkData: ILandmark[];
@@ -22,20 +18,7 @@ interface Props {
 function Catalog(props: Props) {
   const { initialLandmarkData, initialAdminCenterData, categories } = props;
   const [isActive, setIsActive] = useState(false);
-  const [innerWidth, setInnerWidth] = useState(1024);
-  useEffect(() => {
-    setInnerWidth(window.innerWidth);
-
-    const resizeHandler = () => {
-      setInnerWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", resizeHandler);
-
-    return () => {
-      window.removeEventListener("resize", resizeHandler);
-    };
-  }, [innerWidth]);
+  const innerWidth = useWindowWidth(1024);
 
   const sortVariables = {
     variables: [

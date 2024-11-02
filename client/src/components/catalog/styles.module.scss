@@ -182,7 +182,6 @@
   @include flex-center;
   @include glass-shell;
   height: 5vh;
-  justify-content: space-between;
   width: calc(100% - 6vw);
   padding: 0 3vw;
   position: relative;
@@ -201,7 +200,6 @@
     @include flex-center;
     column-gap: 1vw;
     width: 65%;
-    justify-content: flex-end;
   }
 
   &__sort_variables {
@@ -360,7 +358,7 @@
 
 .name_rating_cont {
   &__rating {
-    width: calc(1.65rem + 0.5vw);
+    width: min-content;
     @include flex-center;
     align-items: flex-start;
     column-gap: 0.5vw;
@@ -369,6 +367,13 @@
   &__name {
     font-size: 1.05rem;
     font-weight: 600;
+    transition: color ease-out 250ms;
+  }
+}
+
+.rating {
+  &__svg {
+    min-width: 1rem;
   }
 }
 

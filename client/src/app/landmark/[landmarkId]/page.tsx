@@ -3,17 +3,17 @@
 import { useParams } from "next/navigation";
 import styles from "./styles.module.scss";
 import Header from "@/components/header/header";
-import AuthHandler from "@/components/auth/authHandler";
 import { useQuery } from "@tanstack/react-query";
 import { fetchLandmark } from "@/queries/fetchLandmark";
 import NameRating from "@/components/landmark/nameRating";
 import Slider from "@/components/slider/slider";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Star from "@/components/svg/star";
 import Arrow from "@/components/svg/arrow";
 import api from "@/http/api";
 import useAuth from "@/hook/useAuth";
 import Link from "next/link";
+import AuthHandler from "@/components/auth/authHandler";
 
 interface Props {}
 
@@ -38,10 +38,15 @@ function LandmarkPage(props: Props) {
 
   return (
     <>
+      <AuthHandler />
+
       <Header />
 
       <main className={styles.main}>
-        <Link href={"/"} style={{ textDecoration: "none", color: "white" }}>
+        <Link
+          href={"/?shouldUpdateFilterCategories=1"}
+          style={{ textDecoration: "none", color: "white" }}
+        >
           <div className={styles.back_arrow}>
             <Arrow className={styles.back_arrow__svg} />
             <p className={styles.back_arrow__text}>Назад</p>

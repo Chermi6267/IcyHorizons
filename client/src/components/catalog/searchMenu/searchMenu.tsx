@@ -1,7 +1,6 @@
 import styles from "../styles.module.scss";
 import { useState } from "react";
 import CheckBoxInput from "../checkBoxInput";
-import SearchInput from "../searchInput";
 import FiltersButton from "../filtersButton";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
@@ -21,9 +20,13 @@ interface Props {
 function SearchMenu(props: Props) {
   const { data } = props;
   const [isSortActive, setIsSortActive] = useState(false);
+  const varFilters = useSelector((state: RootState) => {
+    return state.filters.sortVariable;
+  });
   const [selectedItemId, setSelectedItemId] = useState<string | null>(
     data.variables.filter(
-      (variable) => variable.type === "desc" && variable.group === "rating"
+      (variable) =>
+        variable.type === varFilters.type && variable.group === varFilters.group
     )[0].id
   );
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { ILandmarkPhoto } from "@/interfaces/landmark";
 import SliderImage from "./sliderImage";
 import styles from "./styles.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IncrementButton from "./incrementButton";
 import DecrementButton from "./decrementButton";
 
@@ -16,26 +16,21 @@ function Slider(props: Props) {
 
   const numImages = images.length;
 
+  useEffect(() => {
+    setSliderState(0);
+  }, [images]);
+
   const handleNext = () => {
-    if (sliderState === numImages - 1) {
-      setSliderState(0);
-    } else {
-      setSliderState((prev) => prev + 1);
-    }
+    setSliderState((prev) => (prev === numImages - 1 ? 0 : prev + 1));
   };
 
   const handlePrevious = () => {
-    if (sliderState === 0) {
-      setSliderState(numImages - 1);
-    } else {
-      setSliderState((prev) => prev - 1);
-    }
+    setSliderState((prev) => (prev === 0 ? numImages - 1 : prev - 1));
   };
 
   return (
     <div className={className}>
       <IncrementButton onClick={handleNext} />
-
       <DecrementButton onClick={handlePrevious} />
       <div className={styles.slider__wrapper}>
         {[...images.slice(-1), ...images, ...images.slice(0, 1)].map(

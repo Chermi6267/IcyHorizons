@@ -56,10 +56,12 @@ function Header(props: Props) {
               clientCondition ? styles["user__img-auth"] : ""
             }`}
           />
+
           <button
             onClick={() => setIsUserMenu(!isUserMenu)}
             className={styles.user__show_btn}
           />
+
           <div
             className={
               isUserMenu
@@ -69,7 +71,7 @@ function Header(props: Props) {
           >
             <div className={styles.info_wrapper__container}>
               <p className={styles.container__text}>
-                {clientCondition ? user.email : "🛑 Вы не авторизованы 🛑"}
+                {clientCondition ? user.email : "Вы не авторизованы"}
               </p>
             </div>
           </div>
@@ -82,6 +84,9 @@ function Header(props: Props) {
           >
             <div
               className={styles.info_wrapper__container}
+              style={
+                !clientCondition ? { color: "#a8cd9f" } : { color: "#eb4335" }
+              }
               onClick={() => {
                 if (clientCondition) {
                   logoutHandler();
@@ -94,7 +99,7 @@ function Header(props: Props) {
               }}
             >
               <p className={styles.container__logout_text}>
-                {clientCondition ? "🛑" : "✔"}
+                {clientCondition ? "Выйти" : "Войти"}
               </p>
             </div>
           </div>

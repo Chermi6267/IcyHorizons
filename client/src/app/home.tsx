@@ -6,10 +6,7 @@ import "./globals.scss";
 import Header from "@/components/header/header";
 import Catalog from "@/components/catalog/catalog";
 import { IAdminCenter, ICategory, ILandmark } from "@/interfaces/landmark";
-import { setLandmarks } from "@/store/landmarkSlice";
-import { sortByRating } from "@/utils/sortByRating";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import AuthHandler from "@/components/auth/authHandler";
 
 export default function Home(props: {
   landmarks: ILandmark[];
@@ -17,13 +14,10 @@ export default function Home(props: {
   categories: ICategory[];
 }) {
   const { landmarks, adminCenter, categories } = props;
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setLandmarks(sortByRating(landmarks, "desc")));
-  }, []);
 
   return (
     <>
+      <AuthHandler />
       <Header />
       <main className={styles.main}>
         <HexMapMenu

@@ -20,6 +20,7 @@ import { IAdminCenter, ILandmark } from "@/interfaces/landmark";
 import { sortByRating } from "@/utils/sortByRating";
 import { sortByCommentsLength } from "@/utils/sortByCommentsLength";
 import api from "@/http/api";
+import useWindowWidth from "@/hook/useWindowWidth";
 
 function HexMapMenu(props: {
   initialLandmarkData: ILandmark[];
@@ -34,24 +35,19 @@ function HexMapMenu(props: {
   const gigaTextRef = useRef<HTMLDivElement | null>(null);
   const [isGigaFetching, setIsGigaFetching] = useState(false);
   const [isGigaError, setIsGigaError] = useState(false);
-  const [innerWidth, setInnerWidth] = useState(1023);
+  const innerWidth = useWindowWidth(1023);
   const [bestLandmark, setBestLandmark] = useState(
     sortByRating(initialLandmarkData, "desc")
   );
-
-  useEffect(() => {
-    setInnerWidth(window.innerWidth);
-
-    const resizeHandler = () => {
-      setInnerWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", resizeHandler);
-
-    return () => {
-      window.removeEventListener("resize", resizeHandler);
-    };
-  }, [innerWidth]);
+  const catFilter = useSelector((state: RootState) => {
+    return state.filters.categories;
+  });
+  const varFilter = useSelector((state: RootState) => {
+    return state.filters.sortVariable;
+  });
+  const debounceCatFilter = useDebounce(catFilter, 1000);
+  const debounceSelectedRegion = useDebounce(selectedRegion, 2000);
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   // ================================
 
@@ -72,16 +68,6 @@ function HexMapMenu(props: {
 
   // ================================
 
-  const catFilter = useSelector((state: RootState) => {
-    return state.filters.categories;
-  });
-  const varFilter = useSelector((state: RootState) => {
-    return state.filters.sortVariable;
-  });
-  const debounceCatFilter = useDebounce(catFilter, 1000);
-  const debounceSelectedRegion = useDebounce(selectedRegion, 2000);
-  const [isFirstRender, setIsFirstRender] = useState(true);
-
   useEffect(() => {
     if (!isFirstRender) {
       refetch();
@@ -90,8 +76,13 @@ function HexMapMenu(props: {
       });
     } else {
       setIsFirstRender(false);
+      api.get(`/landmark/center/${selectedRegion}`).then((res) => {
+        setBestLandmark(res.data.landmarks);
+      });
     }
-  }, [debounceCatFilter, selectedRegion, isFirstRender, refetch]);
+  }, [debounceCatFilter, selectedRegion, refetch]);
+
+  // ================================
 
   useEffect(() => {
     if (varFilter.group === "rating") {

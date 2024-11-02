@@ -19,6 +19,7 @@ function LoginForm(props: Props) {
   const [showPassword, setShowPassword] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -29,6 +30,7 @@ function LoginForm(props: Props) {
   } = useForm<ILogForm>({ mode: "onSubmit" });
 
   const onSubmit: SubmitHandler<ILogForm> = async (data) => {
+    setIsLoading(true);
     await loginHandler({
       data: {
         email: data.email,
@@ -50,6 +52,9 @@ function LoginForm(props: Props) {
           type: "custom",
           message: `${(error as Error).message}`,
         });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
 
     return;
@@ -92,7 +97,7 @@ function LoginForm(props: Props) {
 
       <FormMessages successMessage={successMessage} errors={errors} />
 
-      <SubmitButton text="Войти" />
+      <SubmitButton text={!isLoading ? "Войти" : "Обработка..."} />
 
       <LogWith />
     </form>

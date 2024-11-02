@@ -82,7 +82,7 @@ function AuthPage(props: Props) {
       setStatus(null);
       router.replace("/auth");
     }
-  }, [customError, status]);
+  }, [customError, status, router]);
 
   return (
     <main className={styles.main}>

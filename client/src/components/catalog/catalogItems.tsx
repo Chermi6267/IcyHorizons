@@ -3,6 +3,8 @@ import CatalogItem from "./catalogItem";
 import styles from "./styles.module.scss";
 import { RootState } from "@/store";
 import { ILandmark } from "@/interfaces/landmark";
+import { sortByRating } from "@/utils/sortByRating";
+import { sortByCommentsLength } from "@/utils/sortByCommentsLength";
 
 interface Props {
   initialData: ILandmark[];
@@ -13,6 +15,9 @@ function CatalogItems(props: Props) {
   const selectedRegion = useSelector(
     (state: RootState) => state.hexMap.selectedRegion
   );
+  const filters = useSelector((state: RootState) => {
+    return state.filters;
+  });
   const data = useSelector((state: RootState) => {
     return state.landmarks;
   });
@@ -21,13 +26,29 @@ function CatalogItems(props: Props) {
     <ul className={styles.catalog_items}>
       {data.length === 0 ? (
         <li>
-          <p>Здесь пока что пусто, но наша команда спешит это исправить</p>
+          <p style={{ width: "90%", margin: "0 auto", textAlign: "center" }}>
+            Ничего не нашли.<br></br>Попробуйте изменить фильтры или выберите
+            другой регион
+          </p>
         </li>
       ) : (
         <>
-          {data.map((item) => {
-            return <CatalogItem key={item.id} item={item} />;
-          })}
+          {selectedRegion === "ALL" && filters.categories.length >= 4
+            ? filters.sortVariable.group === "rating"
+              ? sortByRating(initialData, filters.sortVariable.type).map(
+                  (item) => {
+                    return <CatalogItem key={item.id} item={item} />;
+                  }
+                )
+              : sortByCommentsLength(
+                  initialData,
+                  filters.sortVariable.type
+                ).map((item) => {
+                  return <CatalogItem key={item.id} item={item} />;
+                })
+            : data.map((item) => {
+                return <CatalogItem key={item.id} item={item} />;
+              })}
         </>
       )}
     </ul>

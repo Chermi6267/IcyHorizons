@@ -30,7 +30,7 @@
   background-color: $btn-bg-color;
   font-family: "Comfortaa", sans-serif;
   font-optical-sizing: auto;
-  font-style: normal;
+  font-size: 1rem;
   transition: all 100ms ease;
 
   &:focus {
@@ -83,6 +83,8 @@
 
   &__svg-google {
     width: 25%;
+    min-width: 75px;
+    max-width: 30px;
     transition: all 100ms ease;
   }
 }
@@ -271,32 +273,38 @@
     box-sizing: border-box;
     width: 100%;
     max-height: 10%;
-    flex-grow: 1;
     @include flex-center;
     flex-direction: column;
-    row-gap: 5px;
-    min-height: 30px;
+    min-height: min-content;
     min-width: 0;
     overflow-y: auto;
     overflow-x: hidden;
     @include hide-scrollbar;
-
-    p {
-      margin: 0;
-      color: $error-color;
-      font-size: 0.9rem;
-      text-align: center;
-      font-weight: 500;
-      width: 100%;
-    }
   }
 
   &__success_message_container {
     @extend .form__error_message_container;
+    min-height: 15px;
 
     p {
       color: $green-color;
       font-weight: 900;
+    }
+  }
+}
+
+.error_message_container {
+  &__errors {
+    height: 100%;
+
+    p {
+      margin: 0;
+      margin-bottom: 1vh;
+      color: $error-color;
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 500;
+      width: 100%;
     }
   }
 }

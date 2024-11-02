@@ -19,7 +19,7 @@ export default async function Page() {
   const landmarksData = await landmarksResponse.json();
   const adminCenterData = await adminCenterResponse.json();
   const categories = await categoriesResponse.json();
-  console.log(landmarksData);
+
   return (
     <Home
       landmarks={landmarksData.landmarks}

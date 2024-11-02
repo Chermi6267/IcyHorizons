@@ -21,6 +21,7 @@ function RegistrationForm(props: Props) {
   const [showPassword, setShowPassword] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -32,6 +33,7 @@ function RegistrationForm(props: Props) {
   } = useForm<IRegForm>({ mode: "onSubmit" });
 
   const onSubmit: SubmitHandler<IRegForm> = async (data) => {
+    setIsLoading(true);
     await regHandler({
       data: {
         email: data.email,
@@ -54,6 +56,9 @@ function RegistrationForm(props: Props) {
           type: "custom",
           message: `${(error as Error).message}`,
         });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
 
     return;
@@ -112,7 +117,7 @@ function RegistrationForm(props: Props) {
 
       <FormMessages successMessage={successMessage} errors={errors} />
 
-      <SubmitButton text="Зарегистрироваться" />
+      <SubmitButton text={!isLoading ? "Зарегистрироваться" : "Обработка..."} />
 
       <LogWith />
     </form>

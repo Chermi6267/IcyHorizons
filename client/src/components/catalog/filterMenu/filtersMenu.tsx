@@ -1,13 +1,10 @@
-import React, { useState, useCallback, useEffect, useMemo } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import CheckBoxInput from "../checkBoxInput";
 import styles from "../styles.module.scss";
-import { useDebounce } from "@/hook/useDebounce";
 import { useDispatch, useSelector } from "react-redux";
-import { setLandmarks } from "@/store/landmarkSlice";
-import { sortLandmarksByCategoryId } from "@/utils/sortByCategoryId";
-import { RootState } from "@/store";
-import { ILandmark } from "@/interfaces/landmark";
 import { setCategoryFilter } from "@/store/filtersSlice";
+import { useSearchParams } from "next/navigation";
+import { RootState } from "@/store";
 
 interface Props {
   setIsActive: () => void;
@@ -22,22 +19,17 @@ interface Props {
 
 const FiltersMenu: React.FC<Props> = React.memo((props) => {
   const { data, setIsActive } = props;
+  const cats = useSelector((state: RootState) => {
+    return state.filters.categories;
+  });
   const [checkedItems, setCheckedItems] = useState<string[]>(
-    data.categories.map((cat) => cat.id)
+    cats.length === data.categories.length
+      ? data.categories.map((cat) => cat.id)
+      : cats
   );
 
   const dispatch = useDispatch();
   const [isFirstRender, setIsFirstRender] = useState(true);
-
-  // const selectedRegion = useSelector((state: RootState) => {
-  //   return state.hexMap.selectedRegion;
-  // });
-  // const landmarks = useSelector((state: RootState) => state.landmarks);
-  // const [allLandmarks, setAllLandmarks] = useState<ILandmark[]>(landmarks);
-
-  // useEffect(() => {
-  //   setAllLandmarks(landmarks);
-  // }, [isFirstRender, selectedRegion]);
 
   const handleCheckBoxChange = useCallback((id: string) => {
     setCheckedItems((prev) => {
@@ -50,25 +42,12 @@ const FiltersMenu: React.FC<Props> = React.memo((props) => {
   }, []);
 
   useEffect(() => {
-    if (isFirstRender) {
-      setIsFirstRender(false);
-    } else {
+    if (!isFirstRender) {
       dispatch(setCategoryFilter(checkedItems));
+    } else {
+      setIsFirstRender(false);
     }
   }, [checkedItems]);
-
-  // const debounceCheckedItems = useDebounce(checkedItems, 1000);
-  // useEffect(() => {
-  //   if (isFirstRender) {
-  //     setIsFirstRender(false);
-  //   } else {
-  //     dispatch(
-  //       setLandmarks(
-  //         sortLandmarksByCategoryId(allLandmarks, debounceCheckedItems)
-  //       )
-  //     );
-  //   }
-  // }, [debounceCheckedItems]);
 
   return (
     <div className={styles.filters_menu}>
@@ -107,5 +86,7 @@ const FiltersMenu: React.FC<Props> = React.memo((props) => {
     </div>
   );
 });
+
+FiltersMenu.displayName = "FiltersMenu";
 
 export default FiltersMenu;

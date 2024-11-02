@@ -9,7 +9,7 @@ interface IFilters {
 }
 
 const initialState: IFilters = {
-  categories: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+  categories: ["1", "2", "3", "4"],
   sortVariable: {
     type: "desc",
     group: "rating",
