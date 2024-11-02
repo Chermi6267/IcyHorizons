@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users User[] @relation("UserRole")
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  hashPassword String?
+  loggedWith   String
+  roleId       Int?
+  isVerified   Boolean   @default(false)
+  role         Role?     @relation("UserRole", fields: [roleId], references: [id])
+  profile      Profile?
+  comment      Comment[]
+  token        token?
+}
+
+model token {
+  id     Int    @id @default(autoincrement())
+  token  String @unique @db.Char(255)
+  userId Int    @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  name   String?
+  avatar String?
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int     @unique
+}
+
+model AdminCenter {
+  id       String     @unique
+  name     String     @unique
+  capital  String
+  area     Decimal    @default(0)
+  landmark Landmark[] @relation("LandmarkAdminCenter")
+}
+
+model Category {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  landmark Landmark[]
+}
+
+model Landmark {
+  id            Int             @id @default(autoincrement())
+  name          String          @unique
+  latitude      Decimal         @db.Decimal(10, 7)
+  longitude     Decimal         @db.Decimal(10, 7)
+  link          String          @unique
+  description   String          @db.MediumText
+  rating        Decimal         @db.Decimal(3, 2)
+  category      Category[]
+  landmarkPhoto LandmarkPhoto[]
+  comment       Comment[]
+  adminCenterId String?
+  adminCenter   AdminCenter?    @relation("LandmarkAdminCenter", fields: [adminCenterId], references: [id])
+  tour          Tour[]
+}
+
+model LandmarkPhoto {
+  id         Int      @id @default(autoincrement())
+  photoPath  String   @unique
+  landmarkId Int
+  landmark   Landmark @relation(fields: [landmarkId], references: [id])
+}
+
+model Comment {
+  id         Int      @id @default(autoincrement())
+  text       String   @db.MediumText
+  stars      Decimal  @db.Decimal(2, 1)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  landmarkId Int
+  landmark   Landmark @relation(fields: [landmarkId], references: [id])
+}
+
+model Tour {
+  id          Int        @id @default(autoincrement())
+  title       String     @unique
+  description String     @db.MediumText
+  landmark    Landmark[]
+}

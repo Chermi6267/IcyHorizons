@@ -1,0 +1,29 @@
+@import "../scss/variables.scss";
+@import "../scss/mixins.scss";
+
+.body {
+  // background-image: url("/bg.png");
+  background-color: $bg-color;
+  background-position: -180%;
+  background-size: 200%;
+  max-width: 100vw;
+  min-height: calc(100dvh - 10px);
+  margin: 5px 10px 5px 5px;
+  color: $text-color;
+  line-height: normal;
+  @include scrollbar;
+}
+
+.body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  @include flex-center;
+  flex-direction: column;
+  row-gap: 7vh;
+  overflow-x: hidden;
+  transition: all ease-in-out 300ms;
+}

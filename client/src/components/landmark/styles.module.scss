@@ -1,0 +1,58 @@
+@import "../config.scss";
+
+.landmark_name_rating {
+  width: 70vw;
+  display: flex;
+  justify-content: flex-start;
+  min-height: 30px;
+  padding: 2px 0;
+  flex-direction: column;
+  align-items: flex-end;
+
+  &__name {
+    display: inline-flex;
+    @include glass-shell;
+    padding: max(10px, 1.2vw);
+    width: max-content;
+  }
+
+  &__rating {
+    display: inline-flex;
+    width: max-content;
+    min-width: 40px;
+    column-gap: 7px;
+    padding: max(5px, 0.7vw);
+  }
+}
+
+.rating {
+  &__svg {
+    min-width: 1.1rem;
+    max-width: 100%;
+
+    &-disabled {
+      @extend .rating__svg;
+      opacity: 0.3;
+    }
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .landmark_name_rating {
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .landmark_name_rating {
+    width: 90vw;
+
+    &__name {
+      display: inline-flex;
+      @include glass-shell;
+      padding: max(10px, 1.2vw);
+      width: calc(100% - 2 * max(10px, 1.2vw));
+      overflow: auto;
+    }
+  }
+}

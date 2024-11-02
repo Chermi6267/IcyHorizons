@@ -1,0 +1,120 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  .catalog_wrapper {
+    width: 80vw;
+    @include flex-center;
+    align-items: flex-start;
+    column-gap: 1.5vw;
+
+    &__filters_menu {
+      display: none;
+    }
+
+    &__main_catalog {
+      width: 100%;
+    }
+  }
+
+  .filters_menu-full_width {
+    width: 100dvw;
+    height: 100dvh;
+    transform: translateX(100%);
+    position: fixed;
+    z-index: 10;
+    background-color: $bg-color;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-bottom-left-radius: 50vw;
+    border-top-left-radius: 50vw;
+    transition: all ease-in-out 300ms;
+  }
+
+  .filters_menu-full_width-active {
+    width: 100dvw;
+    height: 100dvh;
+    transform: translateX(100%);
+    position: fixed;
+    z-index: 10;
+    background-color: $bg-color;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: translateX(0);
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    transition: all ease-in-out 200ms;
+  }
+
+  .filters_menu {
+    border-radius: 0;
+    outline: none;
+    width: 75%;
+    background-color: transparent;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 3vh;
+    max-height: 30vh;
+
+    &__select_categories {
+      width: 50%;
+      flex: 1;
+    }
+
+    &__select_region {
+      width: 50%;
+      flex: 1;
+    }
+  }
+
+  .check_box {
+    padding: 1vh 0;
+
+    &__custom_box {
+      border-radius: 1vw;
+    }
+  }
+
+  .search_menu {
+    min-height: 30px;
+
+    &__sort_variables_container {
+      position: relative;
+      transform: translateX(0);
+      width: 75%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 5vh;
+
+      h1 {
+        flex: 1;
+        @include flex-center;
+        align-items: flex-start;
+        font-weight: 600;
+        font-size: 1.1rem;
+        width: 50%;
+        padding: 1vw;
+      }
+    }
+  }
+
+  .sort_variables_container {
+    &__sort_variables {
+      flex: 1;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0 2vw;
+    }
+  }
+}

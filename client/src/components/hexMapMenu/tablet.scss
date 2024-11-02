@@ -1,0 +1,71 @@
+@media screen and (max-width: 1023px) and (min-width: 768px) and (min-height: 675px) {
+  .hex_map_menu {
+    @include glass-shell;
+    width: 80vw;
+    height: 55vh;
+    flex-direction: column;
+    margin-top: 2px;
+
+    &__map_container {
+      min-width: 100%;
+      max-width: 100%;
+      max-height: calc(70% - max(7px, 1vh) * 2 - 1rem);
+      @include flex-center;
+      position: relative;
+      background-color: transparent;
+      backdrop-filter: none;
+      outline: none;
+    }
+
+    &__info_container {
+      display: flex;
+      max-height: 30%;
+      row-gap: 1vw;
+      min-width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .info_container {
+    &__sub_data,
+    &__giga_chat,
+    &__main-data {
+      background-color: transparent;
+      backdrop-filter: none;
+      outline: none;
+    }
+
+    &__sub_data,
+    &__giga_chat {
+      width: calc(100% - 4vh);
+      padding-right: 2vh;
+      padding-left: 2vh;
+    }
+
+    &__sub_data {
+      margin-bottom: max(7px, 1vh);
+    }
+
+    &__main-data {
+      display: none;
+    }
+  }
+
+  .slim_data {
+    display: flex;
+  }
+
+  .map_container {
+    &__reload_btn {
+      width: 1.5rem;
+      bottom: 0vh;
+      right: 2vh;
+
+      &-active {
+        width: 1.5rem;
+        bottom: 0vh;
+        right: 2vh;
+      }
+    }
+  }
+}

@@ -1,0 +1,369 @@
+@import "../config.scss";
+
+.hex_map_menu {
+  width: 68.5vw; // Где-то здесь кривые paddings, хз где, поэтому такая ширина
+  height: 55vh;
+  @include flex-center;
+  flex-direction: row;
+  column-gap: 1.5vw;
+  padding-top: 2px;
+
+  &__map_container {
+    min-width: 55%;
+    max-width: 55%;
+    @include glass-shell;
+    @include flex-center;
+    position: relative;
+  }
+
+  &__info_container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    row-gap: 1vw;
+    min-width: 45%;
+    max-width: 45%;
+  }
+}
+
+.map_container {
+  &__reload_btn {
+    position: absolute;
+    bottom: 1vw;
+    right: 1vw;
+    border: none;
+    outline: none;
+    padding: 0;
+    width: 2vw;
+    height: auto;
+    background-color: transparent;
+    fill: $green-color;
+    &__reload_btn:focus {
+      background-color: transparent;
+      outline: none;
+    }
+
+    &-active {
+      fill: $purple-color;
+      position: absolute;
+      bottom: 1vw;
+      right: 1vw;
+      border: none;
+      outline: none;
+      padding: 0;
+      width: 2vw;
+      height: auto;
+      background-color: transparent;
+      pointer-events: stroke;
+
+      &:focus {
+        outline: none;
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.slim_data {
+  width: 100%;
+  height: calc(1rem + max(7px, 1vh) * 2);
+  @include flex-center;
+  display: none;
+
+  &__text {
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .preloader {
+    width: 50%;
+    height: 50%;
+  }
+}
+
+.info_container {
+  &__main_data,
+  &__giga_chat,
+  &__sub_data {
+    width: 100%;
+    @include glass-shell;
+    overflow: hidden;
+  }
+
+  &__main_data {
+    @include flex-center;
+    flex-direction: column;
+    flex: 7;
+    min-height: 60%;
+  }
+
+  &__giga_chat {
+    flex: 2;
+    min-height: 10%;
+    width: calc(100% - 2.5vw);
+    padding: 0.7vw 1vw;
+    padding-right: 1.5vw;
+    @include flex-center;
+    flex-direction: column;
+    row-gap: 5px;
+  }
+
+  &__sub_data {
+    flex: 1;
+    @include flex-center;
+    justify-content: space-between;
+
+    .preloader {
+      height: 70%;
+      margin: 0 auto;
+    }
+
+    p {
+      font-size: 90%;
+      text-wrap: wrap;
+      padding: 0 1.5vw;
+    }
+  }
+}
+
+.giga_chat {
+  &__main_text {
+    color: $green-color;
+    font-weight: 600;
+    font-size: large;
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  &__giga_text {
+    flex-grow: 1;
+    font-weight: 400;
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: column;
+    min-height: 0;
+    min-width: 0;
+    text-align: left;
+    max-width: 100%;
+    padding: 0 0 0 0.5vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    @include scrollbar;
+    white-space: pre-wrap;
+  }
+}
+
+.main_data {
+  &__title {
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: larger;
+    padding: 0.7vw 0 1.5vw 0;
+  }
+
+  &__sub_title {
+    width: calc(100% - 2vw);
+    text-align: left;
+    padding-left: 2vw;
+    padding-bottom: 1vw;
+    font-weight: 500;
+    font-size: large;
+  }
+
+  &__landmark_info {
+    box-sizing: border-box;
+    width: 100%;
+    flex-grow: 1;
+    padding: 0 1.5vw;
+    @include flex-center;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 1vw;
+    min-height: 0;
+    min-width: 0;
+    margin-bottom: 0.5vw;
+  }
+}
+
+.landmark_info {
+  &__first_cell {
+    @include flex-center;
+    justify-content: center;
+    width: 100%;
+    height: 55%;
+    column-gap: 1vw;
+  }
+
+  &__description {
+    height: 45%;
+    overflow: auto;
+    font-weight: 300;
+    @include scrollbar;
+  }
+}
+
+.first_cell {
+  &__right {
+    @include flex-center;
+    flex-direction: column;
+    max-width: 40%;
+    max-height: 100%;
+    row-gap: 0.5vw;
+
+    h1 {
+      font-size: large;
+      width: 100%;
+      max-width: 100%;
+      word-break: keep-all;
+      text-align: left;
+      overflow-x: auto;
+      @include hide-scrollbar;
+    }
+  }
+
+  &__slider {
+    position: relative;
+    width: 60%;
+    height: 100%;
+    background-color: $purple-color;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+}
+
+.right {
+  &__rating {
+    @include flex-center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 100%;
+    column-gap: 0.5vw;
+  }
+}
+
+.rating {
+  &__star {
+    width: 10%;
+    min-width: 20px;
+    max-width: 30px;
+  }
+}
+
+.hex_map {
+  overflow: visible;
+  width: 96%;
+  max-height: 92%;
+
+  &__region_path {
+    outline: none;
+    pointer-events: visiblePainted;
+
+    &-active {
+      fill: $purple-active-color;
+      stroke: $white-color;
+      stroke-width: 0.5rem;
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.preloader {
+  width: 90%;
+  height: 90%;
+  row-gap: 1vw;
+  border-radius: 15px;
+  @include flex-center;
+  flex-direction: column;
+  animation: preloaderInit 500ms 1 ease-in-out;
+
+  &__cell {
+    width: 100%;
+    @include glass-shell;
+    background: linear-gradient(
+      180deg,
+      rgba(40, 30, 80, 0.2),
+      rgba(40, 30, 80, 0.4)
+    );
+    background-size: 800%;
+    animation: preloader 2s infinite;
+
+    &:first-child {
+      width: 100%;
+      height: 10%;
+      flex: 2;
+    }
+
+    &:nth-child(2) {
+      width: 100%;
+      height: 20%;
+      flex: 3;
+    }
+
+    &:nth-child(3) {
+      width: 100%;
+      height: 70%;
+      flex: 8;
+    }
+  }
+}
+
+.info_text {
+  max-width: 90%;
+  text-align: center;
+}
+
+.blinking_cursor {
+  display: inline-block;
+  background-color: $green-color;
+  width: 0.5vw;
+  height: 1em;
+  animation: blink 900ms infinite step-end;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes preloaderInit {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes preloader {
+  0% {
+    background-position: 200% 100%;
+  }
+
+  50% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 200% 100%;
+  }
+}
+
+@import "./tablet.scss";
+@import "./mobile.scss";

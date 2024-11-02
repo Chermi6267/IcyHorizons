@@ -1,0 +1,269 @@
+@import "../../../scss/variables.scss";
+@import "../../../scss/mixins.scss";
+@import "../../page.module.scss";
+
+.main {
+  row-gap: 7vh;
+}
+
+.landmark_main {
+  width: 70vw;
+  display: flex;
+  column-gap: 5vh;
+
+  &__text_cont {
+    min-width: 22vw;
+    @include glass-shell;
+    margin: 2px 0;
+
+    p {
+      margin: 0;
+      padding: 1vw;
+      text-indent: 10px;
+    }
+  }
+
+  &__slider {
+    min-width: 43vw;
+    max-height: calc(45.5vw * 9 / 16);
+    min-height: calc(45.5vw * 9 / 16);
+    height: auto;
+    overflow: hidden;
+    border-radius: 15px;
+    position: relative;
+  }
+
+  &__comment_cont {
+    width: 70vw;
+    margin: 5vh 0;
+  }
+}
+
+.back_arrow {
+  display: flex;
+  width: 70vw;
+  column-gap: 1vw;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+
+  &__svg {
+    rotate: 90deg;
+    @include glass-shell;
+    width: 1.5vw;
+    height: 1.5vw;
+    padding: 0.5vw;
+    border-radius: 100vw;
+    margin-top: 2px;
+  }
+}
+
+.comment_cont {
+  &__comment_input {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__comments {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vh;
+    margin-top: 3vh;
+    margin-bottom: 2px;
+  }
+}
+
+.comment_input {
+  &__input_field {
+    padding: 0;
+    width: 97%;
+    max-height: 200px;
+    overflow: auto;
+    resize: none;
+    color: $light-purple-color;
+    font-size: 1rem;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    position: relative;
+    margin-bottom: 2px;
+    @include scrollbar;
+  }
+
+  &__input_field:focus:after {
+    content: "";
+  }
+
+  &__input_field:empty::after {
+    content: "Комментарий";
+  }
+
+  &__input_field::placeholder {
+    color: $text-color;
+  }
+
+  &__underline {
+    width: 100%;
+    height: 3px;
+    background: $liner-gradient;
+    border-radius: 100vw;
+  }
+}
+
+.comment {
+  @include glass-shell;
+  width: calc(100% - 1vw);
+  padding: 0.5vw;
+
+  &__name_rating_cont {
+    padding: 0 max(15px, 1vw);
+    width: calc(100% - 2 * max(15px, 1vw));
+    @include flex-center;
+    justify-content: space-between;
+    max-height: 20%;
+    margin-bottom: 1vh;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  &__text {
+    margin: 0;
+    width: max-content;
+    width: calc(100% - 1vw);
+    padding-left: max(15px, 1vw);
+  }
+}
+
+.name_rating_cont {
+  &__rating {
+    width: calc(1.65rem + 0.5vw);
+    @include flex-center;
+    align-items: flex-start;
+    column-gap: 0.5vw;
+  }
+
+  &__name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .landmark_main {
+    &__text_cont {
+      min-width: 30vw;
+    }
+
+    &__slider {
+      min-width: 35vw;
+      max-height: calc(37.5vw * 9 / 16);
+      min-height: calc(37.5vw * 9 / 16);
+    }
+  }
+}
+
+@media screen and (max-width: 1330px) {
+  .main {
+    row-gap: 3vh;
+  }
+
+  .landmark_main {
+    flex-direction: column-reverse;
+    align-items: center;
+    row-gap: 3vh;
+
+    &__text_cont {
+      min-width: 30vw;
+    }
+
+    &__slider {
+      min-width: 70vw;
+      max-width: 70vw;
+      max-height: calc(70vw * 9 / 16);
+      min-height: calc(70vw * 9 / 16);
+    }
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .back_arrow {
+    width: 80vw;
+
+    &__svg {
+      width: 2vw;
+      height: 2vw;
+    }
+  }
+
+  .landmark_main {
+    width: 80vw;
+
+    &__text_cont {
+      min-width: 30vw;
+    }
+
+    &__slider {
+      min-width: 80vw;
+      max-width: 80vw;
+      max-height: calc(80vw * 9 / 16);
+      min-height: calc(80vw * 9 / 16);
+    }
+
+    &__comment_cont {
+      width: 80vw;
+      margin: 5vh 0;
+    }
+  }
+
+  .comment_cont {
+    &__comments {
+      width: 80vw;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .back_arrow {
+    width: 90vw;
+
+    &__svg {
+      width: 3vw;
+      height: 3vw;
+    }
+  }
+
+  .landmark_main {
+    width: 90vw;
+
+    &__text_cont {
+      min-width: 30vw;
+    }
+
+    &__slider {
+      min-width: 90vw;
+      max-width: 90vw;
+      max-height: calc(90vw * 9 / 16);
+      min-height: calc(90vw * 9 / 16);
+    }
+
+    &__comment_cont {
+      width: 90vw;
+      margin: 5vh 0;
+    }
+  }
+
+  .comment_cont {
+    &__comments {
+      width: 90vw;
+    }
+  }
+}

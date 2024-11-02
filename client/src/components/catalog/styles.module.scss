@@ -1,0 +1,456 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
+
+@keyframes check-box {
+  0% {
+    width: 0;
+    height: 0;
+  }
+
+  100% {
+    width: 20%;
+    height: 40%;
+  }
+}
+
+.check_box {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5vw 0;
+  display: flex;
+  column-gap: 0.5vw;
+  align-items: center;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  &__custom_box {
+    width: 1.7vh;
+    height: 1.7vh;
+    min-width: 15px;
+    min-height: 15px;
+    background-color: transparent;
+    border: 2px solid $white-color;
+    border-radius: 0.4vw;
+    position: relative;
+
+    &-active {
+      @extend .check_box__custom_box;
+
+      &::after {
+        position: absolute;
+        content: "";
+        width: 20%;
+        height: 40%;
+        top: 50%;
+        left: 50%;
+        border-bottom: 2px solid $white-color;
+        border-right: 2px solid $white-color;
+        transform: rotate(45deg) translate(-105%, -30%);
+        animation: check-box 150ms ease-out 1;
+      }
+    }
+  }
+
+  label {
+    font-size: 1rem;
+    max-width: calc(95% - 1.7vh);
+    white-space: normal;
+    text-overflow: clip;
+    user-select: none;
+  }
+
+  &:last-child {
+    padding-bottom: 1vw;
+  }
+}
+
+.catalog_wrapper {
+  width: 70vw;
+  @include flex-center;
+  align-items: flex-start;
+  column-gap: 1.5vw;
+  margin-bottom: 30px;
+
+  &__filters_menu {
+    width: 25%;
+  }
+
+  &__main_catalog {
+    width: 75%;
+  }
+}
+
+.filters_menu {
+  @include glass-shell;
+  overflow: hidden;
+
+  &__select_region {
+    padding: 1vw;
+  }
+
+  &__select_categories {
+    @include flex-center;
+    flex-direction: column;
+    padding: 0 2vw;
+  }
+}
+
+.select_region {
+  &__text {
+    &-main {
+      width: 100%;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 0.5vh;
+    }
+
+    &-region {
+      width: 100%;
+      font-weight: 400;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 1vh;
+    }
+  }
+
+  &__button_container {
+    width: 100%;
+    @include flex-center;
+
+    button {
+      width: 50%;
+      min-height: 25px;
+      height: 100%;
+      max-height: 5vh;
+      border: none;
+      outline: none;
+      padding: 0;
+      color: $text-color;
+      font-family: "Comfortaa", sans-serif;
+      background-image: $liner-gradient;
+      border-radius: 7px;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+
+      &::before {
+        position: absolute;
+        content: "";
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-image: $liner-gradient;
+        left: 0;
+        top: 0;
+        border-radius: 5px;
+        @include flex-center;
+        transition: all 800ms ease-out;
+      }
+
+      &::after {
+        position: absolute;
+        content: var(--button_text);
+        z-index: 1;
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        background-color: $purple-color;
+        left: 2px;
+        top: 2px;
+        border-radius: 5px;
+        @include flex-center;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          &::before {
+            rotate: 360deg;
+            transition: all 800ms ease-out;
+          }
+        }
+      }
+    }
+  }
+}
+
+.search_menu {
+  min-height: 30px;
+  width: 100%;
+  @include flex-center;
+  @include glass-shell;
+  height: 5vh;
+  justify-content: space-between;
+  width: calc(100% - 6vw);
+  padding: 0 3vw;
+  position: relative;
+  margin-bottom: 3vh;
+  z-index: 1;
+
+  &__input_container {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 35%;
+    row-gap: 1px;
+  }
+
+  &__sort_container {
+    @include flex-center;
+    column-gap: 1vw;
+    width: 65%;
+    justify-content: flex-end;
+  }
+
+  &__sort_variables {
+    position: absolute;
+    row-gap: 1vh;
+    right: 0;
+    top: 0;
+    width: 10vw;
+    transform: translateX(110%);
+  }
+}
+
+.sort_variables {
+  &__variable {
+    @include glass-shell;
+    @include flex-center;
+    padding: 0.5vh 0.5vw;
+    width: 100%;
+    opacity: 0;
+    min-height: 30px;
+
+    .check_box {
+      padding: 0;
+    }
+
+    &-active {
+      @extend .sort_variables__variable;
+      transition: all 200ms ease-in-out;
+      opacity: 1;
+    }
+
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{200 / $i}ms;
+        transform: translateY(0);
+      }
+
+      &-active:nth-child(#{$i}) {
+        transition-delay: #{$i * 100}ms;
+        transform: translateY(calc(#{$i - 1} * 35%));
+      }
+    }
+  }
+}
+
+.sort_container {
+  &__sort_label {
+    font-size: 0.95rem;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  &__sort_btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    max-width: 4%;
+    min-width: 15px;
+    transform: scale(1, 1);
+    transition: all 250ms cubic-bezier(0.5, -0.05, 1, 1.4);
+  }
+
+  &__sort_btn-active {
+    @extend .sort_container__sort_btn;
+    transform: scale(-1, -1);
+    transition: all 250ms cubic-bezier(0.5, -0.05, 1, 1.4);
+  }
+
+  &__sort_filters_btn {
+    @extend .sort_container__sort_btn;
+    transition-duration: 350ms;
+  }
+
+  &__sort_filters_btn-active {
+    @extend .sort_container__sort_btn-active;
+    transition-duration: 350ms;
+  }
+}
+
+.sort_btn {
+  &__sort_arrow_svg {
+    width: 100%;
+  }
+}
+
+.input_container {
+  &__input_field {
+    padding: 0;
+    width: 92%;
+    color: $light-purple-color;
+    font-size: 1rem;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    position: relative;
+  }
+
+  &__input_field::placeholder {
+    color: $text-color;
+  }
+
+  &__underline {
+    width: 100%;
+    height: 3px;
+    background: $liner-gradient;
+    border-radius: 100vw;
+  }
+}
+
+.catalog_items {
+  width: 100%;
+  @include flex-center;
+  flex-direction: column;
+  row-gap: 3vh;
+}
+
+.catalog_item {
+  cursor: pointer;
+  @include glass-shell;
+  @include flex-center;
+  width: calc(100% - 3.4vw);
+  padding: 2vh 1.7vw;
+  flex-direction: column;
+  row-gap: 1.5vh;
+  transition: all 100ms ease-in;
+
+  &__name_rating_cont {
+    padding: 0 1vw;
+    width: 100%;
+    @include flex-center;
+    justify-content: space-between;
+    max-height: 20%;
+  }
+
+  &__photo_description_cont {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 80%;
+    column-gap: 2vh;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      outline-color: $light-purple-color;
+      outline-width: 1px;
+      transition: all 100ms ease-in;
+    }
+  }
+}
+
+.name_rating_cont {
+  &__rating {
+    width: calc(1.65rem + 0.5vw);
+    @include flex-center;
+    align-items: flex-start;
+    column-gap: 0.5vw;
+  }
+
+  &__name {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+}
+
+.photo_description_cont {
+  &__text {
+    max-width: 60%;
+    height: 11.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__slider {
+    position: relative;
+    height: 11.5rem;
+    width: 40%;
+    background-color: $purple-color;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 1700px) {
+  .check_box {
+    label {
+      font-size: 0.95rem;
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .check_box {
+    label {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media (max-width: 1550px) {
+  .catalog_wrapper {
+    width: 70vw;
+    @include flex-center;
+    align-items: flex-start;
+    column-gap: 1.5vw;
+
+    &__filters_menu {
+      width: 27%;
+    }
+
+    &__main_catalog {
+      width: 73%;
+    }
+  }
+
+  .check_box {
+    label {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .catalog_wrapper {
+    width: 70vw;
+    @include flex-center;
+    align-items: flex-start;
+    column-gap: 1.5vw;
+
+    &__filters_menu {
+      width: 25%;
+    }
+
+    &__main_catalog {
+      width: 75%;
+    }
+  }
+
+  .check_box {
+    label {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+@import "./tablet.scss";
+@import "./mobile.scss";
