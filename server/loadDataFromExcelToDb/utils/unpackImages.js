@@ -4,6 +4,22 @@ const path = require("path");
 const defaultFolderPath = path.join(__dirname, "../../img/default");
 const smallFolderPath = path.join(__dirname, "../../img/small");
 
+const folderPath1 = path.join(__dirname, "../../public/img/landmark/default");
+if (!fs.existsSync(folderPath1)) {
+  fs.mkdirSync(folderPath1, { recursive: true });
+  console.log(`Папка "${folderPath1}" была создана.`);
+} else {
+  console.log(`Папка "${folderPath1}" уже существует.`);
+}
+
+const folderPath2 = path.join(__dirname, "../../public/img/landmark/small");
+if (!fs.existsSync(folderPath2)) {
+  fs.mkdirSync(folderPath2, { recursive: true });
+  console.log(`Папка "${folderPath2}" была создана.`);
+} else {
+  console.log(`Папка "${folderPath2}" уже существует.`);
+}
+
 fs.readdir(defaultFolderPath, (err, files) => {
   if (err) {
     console.error("Error reading directory 1:", err);
