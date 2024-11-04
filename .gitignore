@@ -3,3 +3,5 @@
 node_modules
 .next
 server/prisma/migrations
+server/public/img/default/*
+server/public/img/small/*
