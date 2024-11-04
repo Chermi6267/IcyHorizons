@@ -5,6 +5,8 @@ import { RootState } from "@/store";
 import { ILandmark } from "@/interfaces/landmark";
 import { sortByRating } from "@/utils/sortByRating";
 import { sortByCommentsLength } from "@/utils/sortByCommentsLength";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 interface Props {
   initialData: ILandmark[];
@@ -21,6 +23,8 @@ function CatalogItems(props: Props) {
   const data = useSelector((state: RootState) => {
     return state.landmarks;
   });
+  const searchParams = useSearchParams();
+  const needRefetch = searchParams.get("needRefetch");
 
   return (
     <ul className={styles.catalog_items}>
@@ -33,7 +37,9 @@ function CatalogItems(props: Props) {
         </li>
       ) : (
         <>
-          {selectedRegion === "ALL" && filters.categories.length >= 4
+          {selectedRegion === "ALL" &&
+          filters.categories.length >= 4 &&
+          needRefetch !== "true"
             ? filters.sortVariable.group === "rating"
               ? sortByRating(initialData, filters.sortVariable.type).map(
                   (item) => {

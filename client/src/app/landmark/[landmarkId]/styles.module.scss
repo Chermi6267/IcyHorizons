@@ -1,6 +1,7 @@
 @import "../../../scss/variables.scss";
 @import "../../../scss/mixins.scss";
 @import "../../page.module.scss";
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
 
 .main {
   row-gap: 7vh;
@@ -18,7 +19,7 @@
 
     p {
       margin: 0;
-      padding: 1vw;
+      padding: max(10px, 1vw);
       text-indent: 10px;
     }
   }
@@ -58,6 +59,14 @@
   }
 }
 
+.empty_btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: $text-color;
+  font-family: "Comfortaa", sans-serif;
+}
+
 .comment_cont {
   &__comment_input {
     display: flex;
@@ -70,7 +79,7 @@
     width: 70vw;
     display: flex;
     flex-direction: column;
-    row-gap: 2vh;
+    row-gap: 4vw;
     margin-top: 3vh;
     margin-bottom: 2px;
   }
@@ -101,7 +110,7 @@
   }
 
   &__input_field:empty::after {
-    content: "Комментарий";
+    content: "Отзыв";
   }
 
   &__input_field::placeholder {
@@ -114,12 +123,41 @@
     background: $liner-gradient;
     border-radius: 100vw;
   }
+
+  &__stars_cont {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: max(5px, 1vh);
+    column-gap: 1vw;
+    width: 100%;
+    height: max(20px, 2vh);
+  }
+
+  &__submit_btn {
+    @include glass-shell;
+    border: none;
+    color: $text-color;
+    width: 30%;
+    min-width: max-content;
+    padding: max(10px, 1vw);
+    margin-top: max(5px, 2vh);
+    border-radius: 15px;
+    font-family: "Comfortaa", sans-serif;
+    font-size: 1rem;
+  }
+}
+
+.rating {
+  &__svg-empty {
+    fill: rgba(200, 165, 255, 0.3);
+    width: max(20px, 2vh);
+  }
 }
 
 .comment {
   @include glass-shell;
   width: calc(100% - 1vw);
-  padding: 0.5vw;
+  padding: 1vw;
 
   &__name_rating_cont {
     padding: 0 max(15px, 1vw);
@@ -157,6 +195,10 @@
   }
 }
 
+.no_comments {
+  text-align: center;
+}
+
 @media screen and (max-width: 1400px) {
   .landmark_main {
     &__text_cont {
@@ -173,13 +215,13 @@
 
 @media screen and (max-width: 1330px) {
   .main {
-    row-gap: 3vh;
+    row-gap: 4vw;
   }
 
   .landmark_main {
     flex-direction: column-reverse;
     align-items: center;
-    row-gap: 3vh;
+    row-gap: 4vw;
 
     &__text_cont {
       min-width: 30vw;
@@ -198,8 +240,15 @@
   .back_arrow {
     width: 80vw;
 
+    p {
+      padding-top: 1%;
+      margin: 0;
+    }
+
     &__svg {
       width: 2vw;
+      min-height: 20px;
+      min-width: 20px;
       height: 2vw;
     }
   }
@@ -234,11 +283,6 @@
 @media screen and (max-width: 767px) {
   .back_arrow {
     width: 90vw;
-
-    &__svg {
-      width: 3vw;
-      height: 3vw;
-    }
   }
 
   .landmark_main {

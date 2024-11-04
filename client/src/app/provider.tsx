@@ -3,7 +3,6 @@
 import { Provider } from "react-redux";
 import { store } from "@/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Suspense } from "react";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
@@ -12,7 +11,6 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense>
-        <ReactQueryDevtools initialIsOpen={false} />
         <Provider store={store}>{children}</Provider>
       </Suspense>
     </QueryClientProvider>

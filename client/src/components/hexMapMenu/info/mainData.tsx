@@ -37,9 +37,10 @@ function InfoMainData(props: Props) {
                 <div className={styles.right__rating}>
                   <Star className={styles.rating__star} />
                   <p>
-                    {String(parseFloat(data.landmarks[0].rating).toFixed(1)) ===
-                    "0.0"
-                      ? 0
+                    {String(
+                      parseFloat(data.landmarks[0].rating).toFixed(1)
+                    ).split(".")[1] === "0"
+                      ? parseFloat(data.landmarks[0].rating).toFixed(0)
                       : parseFloat(data.landmarks[0].rating).toFixed(1)}
                   </p>
                 </div>

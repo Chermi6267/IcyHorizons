@@ -1,12 +1,14 @@
 interface Props {
   className: string;
+  onClick?: () => void;
 }
 
 function Star(props: Props) {
-  const { className } = props;
+  const { className, onClick } = props;
 
   return (
     <svg
+      onClick={onClick ? onClick : () => {}}
       className={className}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 11 10"

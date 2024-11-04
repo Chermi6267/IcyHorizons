@@ -21,6 +21,7 @@ import { sortByRating } from "@/utils/sortByRating";
 import { sortByCommentsLength } from "@/utils/sortByCommentsLength";
 import api from "@/http/api";
 import useWindowWidth from "@/hook/useWindowWidth";
+import { useSearchParams } from "next/navigation";
 
 function HexMapMenu(props: {
   initialLandmarkData: ILandmark[];
@@ -29,6 +30,8 @@ function HexMapMenu(props: {
   const selectedRegion = useSelector(
     (state: RootState) => state.hexMap.selectedRegion
   );
+  const searchParams = useSearchParams();
+  const needRefetch = searchParams.get("needRefetch");
   const { initialLandmarkData, initialAdminCenterData } = props;
   const dispatch = useDispatch();
   const [gigaText, setGigaText] = useState("");
@@ -80,7 +83,13 @@ function HexMapMenu(props: {
         setBestLandmark(res.data.landmarks);
       });
     }
-  }, [debounceCatFilter, selectedRegion, refetch]);
+  }, [debounceCatFilter, selectedRegion]);
+
+  useEffect(() => {
+    if (needRefetch === "true") {
+      refetch();
+    }
+  }, []);
 
   // ================================
 

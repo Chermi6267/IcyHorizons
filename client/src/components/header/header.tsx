@@ -45,7 +45,7 @@ function Header(props: Props) {
       </div>
 
       <div className={styles.header__buttons_container}>
-        <button className={styles.buttons_container__btn}>О нас</button>
+        {/* <button className={styles.buttons_container__btn}>О нас</button> */}
         <div className={styles.buttons_container__user}>
           <Image
             src="/user.png"
@@ -75,6 +75,7 @@ function Header(props: Props) {
               </p>
             </div>
           </div>
+
           <div
             className={
               isUserMenu

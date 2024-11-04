@@ -54,8 +54,8 @@ function CatalogItem(props: Props) {
         </h1>
         <div className={styles.name_rating_cont__rating}>
           <p className={styles.rating__text}>
-            {String(parseFloat(item.rating).toFixed(1)) === "0.0"
-              ? 0
+            {String(parseFloat(item.rating).toFixed(1)).split(".")[1] === "0"
+              ? parseFloat(item.rating).toFixed(0)
               : parseFloat(item.rating).toFixed(1)}
           </p>
 

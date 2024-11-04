@@ -19,6 +19,7 @@
 
   &__buttons_container {
     @extend .header__logo_container;
+    justify-content: flex-end;
     height: 100%;
     min-width: 100px;
   }
@@ -207,11 +208,15 @@
 @media screen and (max-width: 767px) and (min-height: 490px) {
   .user {
     &__info_wrapper {
-      transform: translateX(-25%);
+      transform: translateX(-30%);
+    }
+
+    &__info_wrapper-logout-hidden {
+      transform: translateX(-50%);
     }
 
     &__info_wrapper-logout {
-      transform: translateX(-20%);
+      transform: translateX(-30%);
     }
   }
 

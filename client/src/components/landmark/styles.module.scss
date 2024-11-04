@@ -25,6 +25,24 @@
   }
 }
 
+.comment_input {
+  &__stars_cont {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: max(5px, 1vh);
+    column-gap: 1vw;
+    width: 100%;
+    height: max(20px, 2vh);
+  }
+}
+
+.rating {
+  &__svg-empty {
+    fill: rgba(200, 165, 255, 0.3);
+    width: max(20px, 2vh);
+  }
+}
+
 .rating {
   &__svg {
     min-width: 1.1rem;

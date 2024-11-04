@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 
 const api = axios.create({
@@ -7,7 +9,10 @@ const api = axios.create({
 
 // Installing access token in headers for each request
 api.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 
@@ -31,7 +36,7 @@ api.interceptors.response.use(
         originalRequest._isRetry = true;
 
         const response = await axios.post(
-          process.env.NEXT_PUBLIC_SERVER_URL + "/auth/refreshToken",
+          process.env.NEXT_PUBLIC_SERVER_URL + "/auth/refreshAccessToken",
           {},
           { withCredentials: true }
         );

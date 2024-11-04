@@ -3,7 +3,7 @@ import Home from "./home";
 export default async function Page() {
   const landmarksResponse = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/landmark/ALL/cat?cats=1,2,3,4/`,
-    { next: { revalidate: 60 * 30 } }
+    { next: { revalidate: 60 * 30, tags: ["landmarks"] } }
   );
 
   const adminCenterResponse = await fetch(

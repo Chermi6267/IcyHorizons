@@ -12,6 +12,7 @@
   color: $text-color;
   line-height: normal;
   @include scrollbar;
+  overflow-x: hidden;
 }
 
 .body::-webkit-scrollbar {
