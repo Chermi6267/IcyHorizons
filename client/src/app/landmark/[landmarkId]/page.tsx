@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import AuthHandler from "@/components/auth/authHandler";
 import Arrow from "@/components/svg/arrow";
+import Footer from "@/components/footer/footer";
 
 const LandmarkContent = dynamic(() => import("./landmarkContent"), {
   ssr: false,
@@ -37,6 +38,7 @@ function LandmarkPage() {
           <LandmarkContent setNeedRefetch={(v: boolean) => setNeedRefetch(v)} />
         </Suspense>
       </main>
+      <Footer />
     </>
   );
 }

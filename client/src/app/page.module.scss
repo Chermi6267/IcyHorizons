@@ -2,17 +2,21 @@
 @import "../scss/mixins.scss";
 
 .body {
-  // background-image: url("/bg.png");
+  background-image: url("/bg1.png");
   background-color: $bg-color;
-  background-position: -180%;
-  background-size: 200%;
+  background-size: 100%;
   max-width: 100vw;
   min-height: calc(100dvh - 10px);
   margin: 5px 10px 5px 5px;
   color: $text-color;
   line-height: normal;
   @include scrollbar;
-  overflow-x: hidden;
+  position: relative;
+}
+@media screen and (max-width: 767px) {
+  .body {
+    background-size: 200%;
+  }
 }
 
 .body::-webkit-scrollbar {
@@ -25,6 +29,5 @@
   @include flex-center;
   flex-direction: column;
   row-gap: 7vh;
-  overflow-x: hidden;
   transition: all ease-in-out 300ms;
 }

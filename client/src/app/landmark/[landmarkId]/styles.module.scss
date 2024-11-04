@@ -79,7 +79,7 @@
     width: 70vw;
     display: flex;
     flex-direction: column;
-    row-gap: 4vw;
+    row-gap: 1.5vw;
     margin-top: 3vh;
     margin-bottom: 2px;
   }
@@ -138,6 +138,7 @@
     border: none;
     color: $text-color;
     width: 30%;
+    max-width: 70px;
     min-width: max-content;
     padding: max(10px, 1vw);
     margin-top: max(5px, 2vh);
@@ -157,7 +158,7 @@
 .comment {
   @include glass-shell;
   width: calc(100% - 1vw);
-  padding: 1vw;
+  padding: 0.5vw;
 
   &__name_rating_cont {
     padding: 0 max(15px, 1vw);
@@ -305,9 +306,15 @@
     }
   }
 
+  .comment {
+    width: calc(100% - 2vw);
+    padding: 1vw;
+  }
+
   .comment_cont {
     &__comments {
       width: 90vw;
+      row-gap: 3vh;
     }
   }
 }

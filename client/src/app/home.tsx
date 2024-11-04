@@ -7,6 +7,7 @@ import Header from "@/components/header/header";
 import Catalog from "@/components/catalog/catalog";
 import { IAdminCenter, ICategory, ILandmark } from "@/interfaces/landmark";
 import AuthHandler from "@/components/auth/authHandler";
+import Footer from "@/components/footer/footer";
 
 export default function Home(props: {
   landmarks: ILandmark[];
@@ -30,6 +31,7 @@ export default function Home(props: {
           categories={categories}
         />
       </main>
+      <Footer />
     </>
   );
 }

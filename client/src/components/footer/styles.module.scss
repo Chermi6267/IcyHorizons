@@ -1,0 +1,20 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.footer {
+  @include flex-center;
+  @include glass-shell;
+  position: absolute;
+  left: -15px;
+  bottom: calc(max-content * -1);
+  width: calc(100vw + 5px);
+  border-radius: 0;
+  outline: none;
+  height: max-content;
+
+  p {
+    width: 80%;
+    text-align: center;
+    margin: 3vw;
+  }
+}
