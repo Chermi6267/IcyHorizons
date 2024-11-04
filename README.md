@@ -5,6 +5,7 @@
 ## Описание
 
 Сервер: Express.js, Prisma
+
 Клиент: Next.js, SCSS, Redux
 
 ## Установка
@@ -17,11 +18,11 @@ cd IcyHorizons
 ```bash
 cd server
 npm i
-
 npx prisma migrate dev
 cd loadDataFromExcelToDb
 node saveToDB.js
-
+cd utils
+node unpackImages.js
 cd ..
 npm run dev
 ```
