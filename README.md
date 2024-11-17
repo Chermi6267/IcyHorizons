@@ -61,7 +61,7 @@ node unpackImages.js
 npm run dev
 ```
 
-**Клиент**
+> Клиент
 
 ```bash
 cd client
