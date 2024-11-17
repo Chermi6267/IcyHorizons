@@ -5,3 +5,4 @@ node_modules
 server/prisma/migrations
 server/public/img/landmark/small/*
 server/public/img/landmark/default/*
+dist
