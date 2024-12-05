@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@prisma/client": "^5.16.2",
+    "@prisma/client": "^5.22.0",
     "@types/nodemailer": "^6.4.15",
     "@types/socket.io": "^3.0.1",
     "bcrypt": "^5.1.1",
@@ -19,8 +19,12 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.10.2",
     "nodemailer": "^6.9.14",
+<<<<<<< HEAD
     "prisma": "^5.16.2",
     "sharp": "^0.33.5",
+=======
+    "sharp": "^0.33.4",
+>>>>>>> origin/main
     "socket.io": "^4.7.5",
     "uuid": "^10.0.0",
     "xlsx": "^0.18.5"
@@ -42,6 +46,7 @@
     "@types/sharp": "^0.32.0",
     "@types/uuid": "^10.0.0",
     "nodemon": "^3.1.4",
+    "prisma": "^5.22.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   }
