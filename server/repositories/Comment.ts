@@ -28,6 +28,12 @@ export class CommentRepository {
           user: {
             select: {
               email: true,
+              profile: {
+                select: {
+                  name: true,
+                  avatar: true,
+                },
+              },
             },
           },
         },

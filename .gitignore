@@ -3,10 +3,6 @@
 node_modules
 .next
 server/prisma/migrations
-<<<<<<< HEAD
-public
-=======
-server/public/img/landmark/small/*
-server/public/img/landmark/default/*
+server/public
+server/public
 dist
->>>>>>> origin/main

@@ -24,7 +24,10 @@ function InfoRepublicOfYakutia(props: Props) {
       {data.landmarks.length > 0 ? (
         <>
           <div className={styles.main_data__landmark_info}>
-            <div className={styles.landmark_info__first_cell}>
+            <div
+              style={{ justifyContent: "center" }}
+              className={styles.landmark_info__first_cell}
+            >
               <Slider
                 className={styles.first_cell__slider}
                 images={data.landmarks[0].landmarkPhoto}

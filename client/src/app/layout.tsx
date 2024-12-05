@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Comfortaa } from "next/font/google";
+import { Comfortaa, Pacifico, Pixelify_Sans } from "next/font/google";
 import styles from "./page.module.scss";
 import { Providers } from "./provider";
 
@@ -7,6 +7,17 @@ const comfortaa = Comfortaa({
   subsets: ["cyrillic-ext", "cyrillic"],
   weight: "400",
   variable: "--comfortaa_font",
+});
+
+const pacifico = Pacifico({
+  subsets: ["cyrillic-ext", "cyrillic"],
+  weight: "400",
+  variable: "--pacifico_font",
+});
+const pixelifySans = Pixelify_Sans({
+  subsets: ["cyrillic"],
+  weight: "400",
+  variable: "--pixelify_font",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +34,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <link rel="shortcut icon" href="/logo.png" type="image/x-icon" />
-      <body className={`${comfortaa.className} ${styles.body}`}>
+      <body
+        className={`${comfortaa.className} ${styles.body} ${pacifico.variable}  ${pixelifySans.variable}`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

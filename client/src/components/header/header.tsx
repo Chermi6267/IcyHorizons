@@ -17,26 +17,36 @@ interface Props {}
 function Header(props: Props) {
   const [isUserMenu, setIsUserMenu] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
   const { isAuth, user } = useAuth();
   const dispatch = useDispatch();
   const router = useRouter();
 
-  /* 
-  Client condition is need to solve problem with server and client rendering.
-  For example: hook.js:608 Warning: Prop `className` did not match.
-  Server: "style_user__img__bZpA0 " Client: "style_user__img__bZpA0 style_user__img-auth__uFEnb"
-  Error Component Stack 
-  */
-
-  const clientCondition = isAuth && isClient;
   useEffect(() => {
     setIsClient(true);
-  }, []);
+
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      setIsVisible(prevScrollPos > currentScrollPos || currentScrollPos < 200);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+
+  const clientCondition = isAuth && isClient;
 
   return (
     <>
       <AuthHandler />
-      <header className={styles.header}>
+      <header
+        className={`${styles.header} ${isVisible ? "" : styles.header_hidden}`}
+      >
         <div
           className={styles.header__logo_container}
           onClick={() => {
@@ -48,11 +58,18 @@ function Header(props: Props) {
         </div>
 
         <div className={styles.header__buttons_container}>
-          {/* <button className={styles.buttons_container__btn}>О нас</button> */}
+          {/* <button
+            onClick={() => {
+              router.push("/about");
+            }}
+            className={styles.buttons_container__btn}
+          >
+            О нас
+          </button> */}
           <div
             className={styles.buttons_container__user}
             onClick={() => {
-              router.push("/profile");
+              clientCondition ? router.push("/profile") : router.push("/auth");
             }}
           >
             <Image
@@ -71,10 +88,7 @@ function Header(props: Props) {
               }`}
             />
 
-            <button
-              // onClick={() => setIsUserMenu(!isUserMenu)}
-              className={styles.user__show_btn}
-            />
+            <button className={styles.user__show_btn} />
 
             <div
               className={

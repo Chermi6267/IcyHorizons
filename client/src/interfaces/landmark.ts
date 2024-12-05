@@ -27,7 +27,7 @@ interface IComment {
   stars: string;
   createdAt: string;
   updatedAt: string;
-  user: { email: string };
+  user: { email: string; profile: { avatar: string; name: string } };
   landmarkId: number;
 }
 

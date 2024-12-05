@@ -6,15 +6,43 @@
   @include glass-shell;
   position: absolute;
   left: -15px;
-  bottom: calc(max-content * -1);
+  bottom: -15vh;
   width: calc(100vw + 5px);
   border-radius: 0;
   outline: none;
   height: max-content;
+  flex-direction: row-reverse;
 
   p {
     width: 80%;
     text-align: center;
-    margin: 1vw 3vw;
+    margin: 2vh 0vw;
+  }
+
+  button {
+    @include glass-shell;
+    width: max-content;
+    border: none;
+    color: $text-color;
+    font-family: var(--comfortaa);
+    padding: min(10px, 1vw);
+
+    @media (hover: hover) {
+      &:hover {
+        outline-color: $purple-active-color;
+        color: $green-color;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    padding-bottom: 1vh;
+
+    button {
+      padding: min(15px, 3vw) min(20px, 5vw);
+    }
   }
 }

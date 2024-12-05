@@ -14,7 +14,9 @@ function SliderImage(props: Props) {
       quality={100}
       sizes="width: 100%; height: 100%"
       src={
-        isSmall
+        imgName.startsWith("/")
+          ? imgName
+          : isSmall
           ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PROTOCOL}://${process.env.NEXT_PUBLIC_SERVER_IMG_URL}:${process.env.NEXT_PUBLIC_SERVER_IMG_PORT}/landmark/image/small/${imgName}`
           : `${process.env.NEXT_PUBLIC_SERVER_IMG_PROTOCOL}://${process.env.NEXT_PUBLIC_SERVER_IMG_URL}:${process.env.NEXT_PUBLIC_SERVER_IMG_PORT}/landmark/image/default/${imgName}`
       }

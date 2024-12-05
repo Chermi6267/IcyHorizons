@@ -189,10 +189,29 @@
     column-gap: 0.5vw;
   }
 
+  &__user {
+    display: flex;
+    align-items: center;
+  }
+
   &__name {
     font-size: 1.05rem;
     font-weight: 600;
     margin: 0;
+  }
+}
+
+.user {
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  &__name {
+    font-size: 1rem;
+    font-weight: bold;
   }
 }
 

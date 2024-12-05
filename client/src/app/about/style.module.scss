@@ -1,0 +1,122 @@
+@import "../../scss/mixins.scss";
+@import "../../scss/variables.scss";
+
+$size: 17vw;
+
+.main {
+  width: 60vw;
+  margin: 0 auto;
+  margin-bottom: 5vh;
+}
+
+.title {
+  text-align: center;
+  line-height: 200%;
+  font-weight: 200;
+  font-size: 2rem;
+
+  &::first-line {
+    font-weight: 800;
+  }
+}
+
+.text_span {
+  &__strong {
+    color: $purple-active-color;
+  }
+
+  &__medium {
+    color: $light-purple_color;
+  }
+
+  &__light {
+    color: $light-purple-color;
+  }
+}
+
+.sub_title {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.cont {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: white;
+  margin-top: 7vh;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1vw;
+  }
+}
+
+.name_desc {
+  &__prof {
+    font-size: 1.5rem;
+  }
+
+  &__desc {
+    font-size: 1.1rem;
+    font-weight: 300;
+    padding-left: 1vw;
+  }
+}
+
+.avatar_role {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    width: $size;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: $size;
+    border: 3px solid $purple-color;
+    border-radius: 100vw;
+  }
+
+  h2 {
+    font-weight: 400;
+    color: $light-purple-color;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    width: 90vw;
+    margin: 0 auto;
+    padding-bottom: 5vh;
+  }
+
+  .cont {
+    &__item {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .avatar_role {
+    div {
+      width: 50vw;
+      height: 50vw;
+    }
+  }
+
+  .name_desc {
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+}

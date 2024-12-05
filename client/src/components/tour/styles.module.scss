@@ -1,0 +1,81 @@
+@import "../config.scss";
+
+.tour {
+  width: 70vw;
+  height: max-content;
+  $margin: 15px;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 300;
+    width: 100%;
+    text-align: left;
+
+    span {
+      color: $purple-active-color;
+      font-weight: 800;
+    }
+  }
+
+  &__slider {
+    position: relative;
+    overflow: hidden;
+    margin: $margin;
+    border-radius: $margin;
+    height: 22.5vw;
+    width: 40vw;
+  }
+
+  &__desc {
+    font-size: 1.3rem;
+    font-weight: 100;
+    padding-left: $margin;
+    line-height: 150%;
+  }
+
+  &__btn {
+    @include glass-shell;
+    border: none;
+    color: $text-color;
+    font-family: var(--comfortaa);
+    padding: 15px 10px;
+    font-size: 1rem;
+    margin: $margin;
+    width: 30%;
+    cursor: pointer;
+    transition: outline-color 100ms ease-in-out;
+
+    @media (hover: hover) {
+      &:hover {
+        outline-color: $purple-active-color;
+        color: $green-color;
+        transition: outline-color 100ms ease-in-out;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .tour {
+    width: 80vw;
+    height: max-content;
+    $margin: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tour {
+    width: 90vw;
+    height: max-content;
+    $margin: 15px;
+
+    &__slider {
+      position: relative;
+      overflow: hidden;
+      margin: $margin;
+      border-radius: $margin;
+      height: 45vw;
+      width: 80vw;
+    }
+  }
+}

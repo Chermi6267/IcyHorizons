@@ -13,6 +13,7 @@ import useAuth from "@/hook/useAuth";
 import Star from "@/components/svg/star";
 import StarRating from "@/components/landmark/starRating";
 import { Toaster } from "react-hot-toast";
+import Image from "next/image";
 
 interface Props {
   setNeedRefetch: (v: boolean) => void;
@@ -119,18 +120,30 @@ function LandmarkContent(props: Props) {
                     return (
                       <div key={comment.id} className={styles.comment}>
                         <div className={styles.comment__name_rating_cont}>
-                          <h1 className={styles.name_rating_cont__name}>
-                            {comment.user.email}
-                          </h1>
+                          <div className={styles.name_rating_cont__user}>
+                            <Image
+                              src={
+                                comment.user.profile.avatar === null ||
+                                comment.user.profile.avatar === ""
+                                  ? "/userAvatar.png"
+                                  : comment.user.profile.avatar
+                              }
+                              alt="User Avatar"
+                              width={40}
+                              height={40}
+                              className={styles.user__avatar}
+                            />
+                            <h1 className={styles.user__name}>
+                              {comment.user.profile.name}
+                            </h1>
+                          </div>
                           <div className={styles.name_rating_cont__rating}>
                             <p className={styles.rating__text}>
                               {comment.stars}
                             </p>
-
                             <Star className={styles.rating__svg} />
                           </div>
                         </div>
-
                         <p className={styles.comment__text}>{comment.text}</p>
                       </div>
                     );

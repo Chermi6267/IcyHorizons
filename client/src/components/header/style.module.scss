@@ -10,6 +10,21 @@
   @include flex-center;
   justify-content: space-between;
   margin-bottom: 5vh;
+  backdrop-filter: blur(5px);
+  background-color: $purple-glass-color;
+  outline: 1px solid $purple-color;
+  padding: 1vh max(7px, 1vw);
+  border-radius: 100vw;
+  position: sticky;
+  top: 5px;
+  z-index: 100;
+  transition: transform 0.3s ease;
+  left: 0;
+  right: 0;
+
+  &.header_hidden {
+    transform: translateY(-150%);
+  }
 
   &__logo_container {
     @include flex-center;

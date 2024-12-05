@@ -8,15 +8,17 @@
   justify-content: flex-start;
   overflow: hidden;
   outline-width: 0;
-  margin-top: 20vh;
-  margin-bottom: 5vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 20vw;
   height: max-content;
   padding-bottom: calc(30px + 7vh);
   gap: 2.5vh;
   $size: 6vw;
-  box-shadow: 5px 5px 15px 3px rgba(50, 0, 167, 0.2);
-  outline: 1px solid #180c3d;
+  // box-shadow: 5px 5px 15px 3px rgba(50, 0, 167, 0.2);
+  outline: 1px solid $purple-color;
 
   &__header_avatar {
     width: 100%;
@@ -155,7 +157,7 @@
 
     @media (hover: hover) {
       &:hover {
-        background-color: rgba(157, 50, 250, 0.3);
+        background-color: $purple-active-color;
         transition: background-color 150ms ease-in;
       }
     }

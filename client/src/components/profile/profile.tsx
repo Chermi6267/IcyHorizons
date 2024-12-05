@@ -42,13 +42,15 @@ function Profile(props: Props) {
           .then((res) => {
             toast.success("Имя пользователя изменено", {
               style: {
-                background: "rgb(36, 36, 36)",
-                color: "#fa812f",
+                backgroundColor: "rgba(65, 67, 112, 0.25)",
+                outline: "2px solid rgba(65, 67, 112, 1)",
+                color: "white",
+                backdropFilter: "blur(2px)",
               },
 
               iconTheme: {
-                primary: "green",
-                secondary: "#fa812f",
+                primary: "#a8cd9f",
+                secondary: "white",
               },
             });
             localStorage.setItem("token", res.data.accessToken);
@@ -61,13 +63,15 @@ function Profile(props: Props) {
             }
             toast.error(error.response.data.message, {
               style: {
-                background: "rgb(36, 36, 36)",
-                color: "#fa812f",
+                backgroundColor: "rgba(65, 67, 112, 0.25)",
+                outline: "2px solid rgba(65, 67, 112, 1)",
+                color: "white",
+                backdropFilter: "blur(5px)",
               },
 
               iconTheme: {
-                primary: "#838383",
-                secondary: "#fa812f",
+                primary: "#eb4335",
+                secondary: "white",
               },
             });
 
@@ -97,13 +101,15 @@ function Profile(props: Props) {
           .then((res) => {
             toast.success("Фото профиля изменено", {
               style: {
-                background: "rgb(36, 36, 36)",
-                color: "#fa812f",
+                backgroundColor: "rgba(65, 67, 112, 0.25)",
+                outline: "2px solid rgba(65, 67, 112, 1)",
+                color: "white",
+                backdropFilter: "blur(2px)",
               },
 
               iconTheme: {
-                primary: "green",
-                secondary: "#fa812f",
+                primary: "#a8cd9f",
+                secondary: "white",
               },
             });
             localStorage.setItem("token", res.data.accessToken);
@@ -115,13 +121,15 @@ function Profile(props: Props) {
           .catch((error) => {
             toast.error("Не смогли обновить фото профиля. Попробуйте позже", {
               style: {
-                background: "rgb(36, 36, 36)",
-                color: "#fa812f",
+                backgroundColor: "rgba(65, 67, 112, 0.25)",
+                outline: "2px solid rgba(65, 67, 112, 1)",
+                color: "white",
+                backdropFilter: "blur(5px)",
               },
 
               iconTheme: {
-                primary: "#838383",
-                secondary: "#fa812f",
+                primary: "#eb4335",
+                secondary: "white",
               },
             });
             console.error(error);
@@ -150,13 +158,15 @@ function Profile(props: Props) {
           .then((res) => {
             toast.success("Шапка профиля изменена", {
               style: {
-                background: "rgb(36, 36, 36)",
-                color: "#fa812f",
+                backgroundColor: "rgba(65, 67, 112, 0.25)",
+                outline: "2px solid rgba(65, 67, 112, 1)",
+                color: "white",
+                backdropFilter: "blur(2px)",
               },
 
               iconTheme: {
-                primary: "green",
-                secondary: "#fa812f",
+                primary: "#a8cd9f",
+                secondary: "white",
               },
             });
             localStorage.setItem("token", res.data.accessToken);
@@ -168,13 +178,15 @@ function Profile(props: Props) {
           .catch((error) => {
             toast.error("Не смогли обновить шапку профиля. Попробуйте позже", {
               style: {
-                background: "rgb(36, 36, 36)",
-                color: "#fa812f",
+                backgroundColor: "rgba(65, 67, 112, 0.25)",
+                outline: "2px solid rgba(65, 67, 112, 1)",
+                color: "white",
+                backdropFilter: "blur(2px)",
               },
 
               iconTheme: {
-                primary: "#838383",
-                secondary: "#fa812f",
+                primary: "#eb4335",
+                secondary: "white",
               },
             });
             console.error(error);

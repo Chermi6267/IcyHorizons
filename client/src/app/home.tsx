@@ -8,6 +8,7 @@ import Catalog from "@/components/catalog/catalog";
 import { IAdminCenter, ICategory, ILandmark } from "@/interfaces/landmark";
 import AuthHandler from "@/components/auth/authHandler";
 import Footer from "@/components/footer/footer";
+import Tour from "@/components/tour/tour";
 
 export default function Home(props: {
   landmarks: ILandmark[];
@@ -21,10 +22,13 @@ export default function Home(props: {
       <AuthHandler />
       <Header />
       <main className={styles.main}>
+        <Tour />
+
         <HexMapMenu
           initialLandmarkData={landmarks}
           initialAdminCenterData={adminCenter}
         />
+
         <Catalog
           initialLandmarkData={landmarks}
           initialAdminCenterData={adminCenter}
