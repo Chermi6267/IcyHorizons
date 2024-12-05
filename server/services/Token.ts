@@ -8,13 +8,16 @@ dotenv.config({ path: "../.env" });
 export class TokenService {
   // Generating access token service
   async generateAccessToken(options: IGenerateToken) {
-    const { id, email, role, loggedWith } = options;
+    const { id, email, role, loggedWith, avatar, name, header } = options;
 
     const payload = {
       id,
       email,
       role,
       loggedWith,
+      avatar,
+      name,
+      header,
     };
 
     return jwt.sign(payload, process.env.JWT_ACCESS_SECRET!, {
@@ -24,13 +27,16 @@ export class TokenService {
 
   // Generating refresh token service
   async generateRefreshToken(options: IGenerateToken) {
-    const { id, email, role, loggedWith } = options;
+    const { id, email, role, loggedWith, avatar, name, header } = options;
 
     const payload = {
       id,
       email,
       role,
       loggedWith,
+      avatar,
+      name,
+      header,
     };
 
     return jwt.sign(payload, process.env.JWT_REFRESH_SECRET!, {

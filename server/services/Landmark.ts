@@ -140,7 +140,7 @@ export class LandmarkService {
 
   async getImage(image: string) {
     try {
-      const imgBuffer = await fileRepository.getIMG(image);
+      const imgBuffer = await fileRepository.getIMG(path.join("img", image));
 
       return imgBuffer;
     } catch (error) {

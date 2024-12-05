@@ -68,16 +68,15 @@ export class TokenRepository {
   // Repository for deleting refresh session
   async deleteRefreshSession(refreshToken: string) {
     try {
-      const token = await prisma.token.delete({
-        where: {
-          token: refreshToken,
-        },
-        select: {
-          token: true,
-        },
+      const deletedTokens = await prisma.token.deleteMany({
+        where: { token: refreshToken },
       });
 
-      return token;
+      if (deletedTokens.count === 0) {
+        throw new Error("Токен не найден");
+      }
+
+      return { token: refreshToken };
     } catch (error) {
       throw new Error(`Ошибка при удалении refresh токена: ${error}`);
     }

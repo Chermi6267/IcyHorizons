@@ -10,6 +10,7 @@ import { catRouter } from "./routers/Cat";
 import { gracefulShutdown } from "./gracefulShutDown";
 import { Server } from "socket.io";
 import { GigaChatService } from "./services/GigaChat";
+import { userRouter } from "./routers/User";
 
 const app = express();
 app.use(cookieParser());
@@ -21,6 +22,7 @@ app.use("/landmark", landmarkRouter);
 app.use("/tour", tourRouter);
 app.use("/comment", commentRouter);
 app.use("/cat", catRouter);
+app.use("/user", userRouter);
 const gigaChatService = new GigaChatService();
 
 const server = http.createServer(app);

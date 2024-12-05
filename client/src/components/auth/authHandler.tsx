@@ -26,12 +26,15 @@ export default function AuthHandler() {
             email: decodedAccessToken.email,
             role: decodedAccessToken.role,
             loggedWith: decodedAccessToken.loggedWith,
+            avatar: decodedAccessToken.avatar,
+            name: decodedAccessToken.name,
+            header: decodedAccessToken.header,
           })
         );
       })
       .catch((error) => {
         dispatch(logOut());
-        console.error(error);
+        // console.error(error);
       });
   }
 

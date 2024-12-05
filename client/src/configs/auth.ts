@@ -4,6 +4,10 @@ import GoogleProvider from "next-auth/providers/google";
 import { cookies } from "next/headers";
 import { setCookie } from "cookies-next";
 
+interface ExtendedProfile extends Record<string, any> {
+  picture?: string;
+}
+
 export const authConfig: AuthOptions = {
   providers: [
     GoogleProvider({
@@ -22,13 +26,17 @@ export const authConfig: AuthOptions = {
   callbacks: {
     signIn: async ({ account, profile }) => {
       try {
+        const extendedProfile = profile as ExtendedProfile;
+
         if (account?.provider === "google") {
           const response = await axios.post(
             "http://localhost:5550/auth/registration",
             {
-              email: profile?.email,
-              sub: profile?.sub,
+              email: extendedProfile?.email,
+              sub: extendedProfile?.sub,
               loggedWith: account?.provider,
+              avatar: extendedProfile?.picture,
+              name: extendedProfile?.name,
             },
             { withCredentials: true }
           );

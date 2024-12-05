@@ -1,0 +1,39 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+@media screen and (max-width: 767px) {
+  .profile {
+    width: 85vw;
+    margin-top: 15vh;
+    gap: 3vh;
+    $size: 15vh;
+
+    &__header_avatar {
+      height: calc(45vh / 2.7);
+      margin-bottom: calc($size / 2);
+
+      &::before {
+        bottom: calc(-0.5 * $size);
+        width: $size;
+        height: $size;
+        left: 2vh;
+      }
+    }
+
+    &__name {
+      max-width: calc(100% - 4vh);
+    }
+
+    &__logout_btn {
+      max-width: calc(100% - 4vh);
+      margin: 0 2vh;
+    }
+
+    &__avatar_input {
+      width: $size;
+      height: $size;
+      left: 2vh;
+      bottom: calc(-0.5 * $size);
+    }
+  }
+}

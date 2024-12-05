@@ -8,17 +8,17 @@ function GoogleButton(props: Props) {
   const {} = props;
 
   const handleSignIn = async () => {
-    alert("Функция находиться в разработке");
-    // try {
-    //   const result = await signIn("google", { redirect: true });
-    //   if (result?.error) {
-    //     console.error("Error signing in:", result.error);
-    //   } else {
-    //     console.log("Sign-in successful", result);
-    //   }
-    // } catch (error) {
-    //   console.error("An unexpected error occurred:", error);
-    // }
+    // alert("Функция находиться в разработке");
+    try {
+      const result = await signIn("google", { redirect: true });
+      if (result?.error) {
+        console.error("Error signing in:", result.error);
+      } else {
+        console.log("Sign-in successful", result);
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+    }
   };
 
   return (

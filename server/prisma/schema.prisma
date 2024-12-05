@@ -3,14 +3,14 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model Role {
   id    Int    @id @default(autoincrement())
   name  String @unique
-  users User[] @relation("UserRole")
+  users User[]
 }
 
 model User {
@@ -18,9 +18,9 @@ model User {
   email        String    @unique
   hashPassword String?
   loggedWith   String
-  roleId       Int?
+  roleId       Int
   isVerified   Boolean   @default(false)
-  role         Role?     @relation("UserRole", fields: [roleId], references: [id])
+  role         Role      @relation(fields: [roleId], references: [id])
   profile      Profile?
   comment      Comment[]
   token        token?
@@ -28,7 +28,7 @@ model User {
 
 model token {
   id     Int    @id @default(autoincrement())
-  token  String @unique @db.Char(255)
+  token  String @unique
   userId Int    @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -37,6 +37,7 @@ model Profile {
   id     Int     @id @default(autoincrement())
   name   String?
   avatar String?
+  header String?
   user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int     @unique
 }
@@ -58,11 +59,11 @@ model Category {
 model Landmark {
   id            Int             @id @default(autoincrement())
   name          String          @unique
-  latitude      Decimal         @db.Decimal(10, 7)
-  longitude     Decimal         @db.Decimal(10, 7)
+  latitude      Decimal
+  longitude     Decimal
   link          String          @unique
-  description   String          @db.MediumText
-  rating        Decimal         @db.Decimal(3, 2)
+  description   String
+  rating        Decimal
   category      Category[]
   landmarkPhoto LandmarkPhoto[]
   comment       Comment[]
@@ -80,8 +81,8 @@ model LandmarkPhoto {
 
 model Comment {
   id         Int      @id @default(autoincrement())
-  text       String   @db.MediumText
-  stars      Decimal  @db.Decimal(2, 1)
+  text       String
+  stars      Decimal
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now())
   userId     Int
@@ -93,6 +94,6 @@ model Comment {
 model Tour {
   id          Int        @id @default(autoincrement())
   title       String     @unique
-  description String     @db.MediumText
+  description String
   landmark    Landmark[]
 }

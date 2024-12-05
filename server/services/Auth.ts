@@ -36,6 +36,9 @@ export class AuthService {
         email: user.email,
         role: user.role?.name || "USER",
         loggedWith: user.loggedWith,
+        avatar: user.profile?.avatar || "",
+        name: user.profile?.name || "",
+        header: user.profile?.header || "",
       });
 
       // Generating access token
@@ -44,6 +47,9 @@ export class AuthService {
         email: user.email,
         role: user.role?.name || "USER",
         loggedWith: user.loggedWith,
+        avatar: user.profile?.avatar || "",
+        name: user.profile?.name || "",
+        header: user.profile?.header || "",
       });
 
       // Saving refresh session in db
@@ -96,6 +102,9 @@ export class AuthService {
         email: user.email,
         role: user.role?.name || "USER",
         loggedWith: user.loggedWith,
+        avatar: user.profile?.avatar || "",
+        name: user.profile?.name || "",
+        header: user.profile?.header || "",
       });
 
       await tokenRepository.updateRefreshSession(user.id, refreshToken);
@@ -106,6 +115,9 @@ export class AuthService {
         email: user.email,
         role: user.role?.name || "USER",
         loggedWith: user.loggedWith,
+        avatar: user.profile?.avatar || "",
+        name: user.profile?.name || "",
+        header: user.profile?.header || "",
       });
 
       return {
@@ -146,6 +158,9 @@ export class AuthService {
           email: user.email,
           loggedWith: user.loggedWith,
           role: user.role,
+          avatar: user.avatar,
+          name: user.name,
+          header: user.header,
         });
 
         return accessToken;

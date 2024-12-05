@@ -1,0 +1,66 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+@media screen and (max-width: 768px) {
+  .profile {
+    width: 35vw;
+    margin-top: 18vh;
+    $size: 10vw;
+
+    &__header_avatar {
+      margin-bottom: calc($size / 2);
+
+      &::before {
+        bottom: calc(-0.5 * $size);
+        width: $size;
+        height: $size;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1324px) {
+  .profile {
+    width: 40vw;
+    $size: 10vw;
+
+    &__header_avatar {
+      margin-bottom: calc($size / 2);
+
+      &::before {
+        bottom: calc(-0.5 * $size);
+        width: $size;
+        height: $size;
+      }
+    }
+
+    &__avatar_input {
+      width: $size;
+      height: $size;
+      bottom: calc(-0.5 * $size);
+    }
+  }
+}
+
+@media screen and (max-width: 1700px) {
+  .profile {
+    width: 35vw;
+    $size: 10vw;
+
+    &__header_avatar {
+      margin-bottom: calc($size / 2);
+
+      &::before {
+        bottom: calc(-0.5 * $size);
+        width: $size;
+        height: $size;
+      }
+    }
+
+    &__avatar_input {
+      width: $size;
+      height: $size;
+      bottom: calc(-0.5 * $size);
+    }
+  }
+}
